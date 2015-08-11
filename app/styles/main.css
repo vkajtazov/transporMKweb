@@ -33,7 +33,7 @@ body {
 /* Customize container */
 @media ( min-width: 768px) {
     .container {
-        max-width: 800px;
+        max-width: 850px;
     }
 }
 
@@ -85,6 +85,10 @@ body {
     padding: 10px;
 }
 
+
+/*
+style for dropdown menu
+*/
 .inverse-dropdown {
     background-color: #222;
     border-color: #080808;
@@ -97,4 +101,19 @@ body {
 .inverse-dropdown li a:hover {
     color: #fff;
     background-color: transparent;
+}
+
+/*
+style for carousel
+*/
+.item{
+    background: #333;
+    text-align: center;
+    height: 500px !important;
+}
+.carousel{
+    margin-top: 20px;
+}
+.bs-example{
+    margin: 20px;
 }
