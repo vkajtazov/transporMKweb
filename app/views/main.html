@@ -5,8 +5,8 @@
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="info" class="control-label col-xs-12">Изберете дестинација</label>
-                    <input type="text" class="input-medium search-query form-control" placeholder="Од"><br/>
-                    <input type="text" class="input-medium search-query form-control" placeholder="До">
+                    <input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="fromCity" class="input-medium search-query form-control" placeholder="Од"><br/>
+                    <input type="text" g-places-autocomplete options="autocompleteOptions" ng-model="toCity" class="input-medium search-query form-control" placeholder="До">
                 </div>
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Search</button>

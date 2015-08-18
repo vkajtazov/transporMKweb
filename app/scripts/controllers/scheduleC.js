@@ -1,6 +1,6 @@
 FirstApp.controller('scheduleC', [ '$scope', 'scheduleS',
 		function($scope, scheduleS) {
-		
-		$scope.lines = scheduleS.query();
+		console.log("scheduleC controller");
+		//$scope.lines = scheduleS.query();
 
 		} ]);

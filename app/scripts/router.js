@@ -22,7 +22,7 @@ FirstApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/schedule',{
 	  controller : 'scheduleC',
 	  templateUrl: 'views/scheduleV.html'
-  })
+  });
   $routeProvider.otherwise({
     redirectTo: '/'
   });

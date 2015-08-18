@@ -13,4 +13,4 @@
  *       directive
  * @description # avAngularStartupApp Main module of the application.
  */
-var FirstApp = angular.module('transportApp', ['ngResource','ngRoute']);
+var FirstApp = angular.module('transportApp', ['ngResource','ngRoute','ui.bootstrap','google.places']);
