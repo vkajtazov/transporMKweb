@@ -1,28 +1,64 @@
-<div id="carousel-demo" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-demo" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-demo" data-slide-to="1"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="item active">
-            <img alt="First slide" src="" />
-            <div class="carousel-caption">
-                <h3>Caption Heading One</h3>
-                <p>Caption Text One</p>
+<div class="row">
+
+    <div class="well col-xs-12">
+        <form class="form-search">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="info" class="control-label col-xs-12">Изберете дестинација</label>
+                    <input type="text" class="input-medium search-query form-control" placeholder="Од"><br/>
+                    <input type="text" class="input-medium search-query form-control" placeholder="До">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img alt="Second slide" src="" />
-            <div class="carousel-caption">
-                <h3>Caption Heading Two</h3>
-                <p>Caption Text Two</p>
+
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <label for="info" class="control-label col-xs-12">Изберете превоз</label>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="radio" id="bus" name="sample"/>
+                            <i class="fa fa-bus fa-2x"></i>
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" id="train" name="sample"/>
+                            <i class="fa fa-train fa-2x"></i>
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" id="taxi" name="sample"/>
+                            <i class="fa fa-taxi fa-2x"></i>
+                        </label>
+                    </div>
+                </div>
             </div>
+        </form>
+    </div>
+
+    <div class="col-xs-12">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Од</th>
+                    <th>До</th>
+                    <th>Тргнува во</th>
+                    <th>Пристигнува во</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Скопје</td>
+                    <td>Гевгелија</td>
+                    <td>15:00</td>
+                    <td>17:00</td>
+                    <td><a href="">Повеќе информации</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <a class="left carousel-control" href="#carousel-demo" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-demo" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
 </div>
+        
+        
