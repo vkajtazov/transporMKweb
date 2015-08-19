@@ -41,7 +41,8 @@ angular.module('google.places', [])
                     forceSelection: '=?',
                     customPlaces: '=?'
                 },
-                controller: ['$scope', function ($scope) {}],
+                controller: ['$scope', function ($scope) {
+                }],
                 link: function ($scope, element, attrs, controller) {
                     var keymap = {
                             tab: 9,
@@ -90,7 +91,7 @@ angular.module('google.places', [])
                         $drawer = $compile(drawerElement)($scope);
                         body.append($drawer);  // Append to DOM
 
-                        $scope.$on('$destroy', function() {
+                        $scope.$on('$destroy', function () {
                             $drawer.remove();
                         });
                     }
@@ -163,7 +164,9 @@ angular.module('google.places', [])
                                 $scope.model = prediction.place;
                                 $scope.$emit('g-places-autocomplete:select', prediction.place);
                                 $timeout(function () {
-                                    controller.$viewChangeListeners.forEach(function (fn) {fn()});
+                                    controller.$viewChangeListeners.forEach(function (fn) {
+                                        fn()
+                                    });
                                 });
                             });
                         } else {
@@ -173,7 +176,9 @@ angular.module('google.places', [])
                                         $scope.model = place;
                                         $scope.$emit('g-places-autocomplete:select', place);
                                         $timeout(function () {
-                                            controller.$viewChangeListeners.forEach(function (fn) {fn()});
+                                            controller.$viewChangeListeners.forEach(function (fn) {
+                                                fn()
+                                            });
                                         });
                                     });
                                 }
@@ -219,13 +224,28 @@ angular.module('google.places', [])
                         }
                     }
 
+                    // translate
+                    var a = {"a": "а", "b": "б", "c": "ц", "d": "д", "e": "е",
+                        "f": "ф", "g": "г", "h": "х", "i": "и", "j": "ј", "k": "к", "l": "л", "m": "м",
+                        "n": "н", "o": "о", "p": "п", "q": "љ", "r": "р", "s": "с", "t": "т", "u": "у", "v": "в", "w": "њ",
+                        "x": "џ", "y": "ѕ", "z": "з"};
+
+                    String.prototype.capitalizeFirstLetter = function () {
+                        return this.charAt(0).toUpperCase() + this.slice(1);
+                    };
+                    function transliterate(word) {
+                        return word.split('').map(function (char) {
+                            return a[char.toLowerCase()] || char;
+                        }).join("").capitalizeFirstLetter();
+                    }
+
                     function format(modelValue) {
                         var viewValue = "";
 
                         if (isString(modelValue)) {
                             viewValue = modelValue;
                         } else if (isObject(modelValue)) {
-                            viewValue = modelValue.formatted_address.split(",")[0];
+                            viewValue = transliterate(modelValue.formatted_address.split(",")[0]);
                         }
 
                         return viewValue;
@@ -349,7 +369,7 @@ angular.module('google.places', [])
 
         return {
             restrict: 'A',
-            scope:{
+            scope: {
                 input: '=',
                 query: '=',
                 predictions: '=',
@@ -417,10 +437,10 @@ angular.module('google.places', [])
 
         return {
             restrict: 'A',
-            scope:{
-                index:'=',
-                prediction:'=',
-                query:'='
+            scope: {
+                index: '=',
+                prediction: '=',
+                query: '='
             },
             template: TEMPLATE.join('')
         }
