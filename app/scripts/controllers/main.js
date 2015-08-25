@@ -10,20 +10,19 @@
  * @description # MainCtrl Controller of the avAngularStartupApp
  */
 
-FirstApp.controller('MainCtrl', ['$scope', 'firstService', '$http',
-    function ($scope, firstService, $http) {
-        console.log("Main controller");
+FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
+    function ($scope, stationService, lineService) {
 
-        /*      getCountries(); // Load all countries with capitals
-         function getCountries(){
-         $http.get("ajax/getCountries.php").success(function(data){
-         $scope.countries = data;
-         });
-         }*/
+        $scope.selected = "";
+        $scope.stations = stationService.query();
 
-        $scope.autocompleteOptions = {
-            componentRestrictions: { country: 'mk' },
-            types: ['geocode']
+        $scope.find = function () {
+            lineService.find($.param({
+                startStationId: $scope.startStation.id,
+                endStationId: $scope.endStation.id
+            }), function success(result) {
+                $scope.line = result;
+            });
         }
 
     }]);
