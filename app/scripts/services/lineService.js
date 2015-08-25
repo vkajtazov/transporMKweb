@@ -2,7 +2,7 @@
  * Created by Kosta on 25-Aug-15.
  */
 FirstApp.factory('lineService', function ($resource) {
-    return $resource('http://transport-mk.herokuapp.com/data/rest/lines/:action', {}, {
+    return $resource('https://transport-mk.herokuapp.com/data/rest/lines/:action', {}, {
         find: {
             method: 'POST',
             params: {
