@@ -1,20 +1,21 @@
 <div class="row">
 
     <div class="well col-xs-12">
-        <form class="form-search">
+        <form name="searchForm" class="form-search">
             <div class="col-xs-6">
                 <div class="form-group">
                     <label for="info" class="control-label col-xs-12">Изберете дестинација</label>
                     <input type="text" ng-model="startStation"
-                           typeahead="station as (station.stationName) for station in stations | filter:$viewValue"/>
-                    <input type="text" ng-model="endStation"
-                           typeahead="station as (station.stationName) for station in stations | filter:$viewValue"/>
+                           typeahead="station as (station.stationName) for station in stationsFrom | filter:$viewValue"
+                           required/>
+                    <input type="text" ng-model="endStation" ng-focus="inputFocus()"
+                           typeahead="station as (station.stationName) for station in stationsTo | filter:$viewValue" required/>
 
                     <!--<input type="text" g-places-autocomplete options="autocompleteOptions" force-selection="true" ng-model="fromCity" class="input-medium search-query form-control" placeholder="Од"><br/>
                     <input type="text" g-places-autocomplete options="autocompleteOptions" force-selection="true" ng-model="toCity" class="input-medium search-query form-control" placeholder="До">
 -->                </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary" ng-click="find()">Search</button>
+                    <button ng-disabled="searchForm.$invalid" type="submit" class="btn btn-primary" ng-click="find()">Search</button>
                 </div>
             </div>
 

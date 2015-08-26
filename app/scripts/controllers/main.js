@@ -13,8 +13,8 @@
 FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
     function ($scope, stationService, lineService) {
 
-        $scope.selected = "";
-        $scope.stations = stationService.query();
+        $scope.stationsFrom = stationService.query();
+        $scope.stationsTo = [];
 
         $scope.find = function () {
             lineService.find($.param({
@@ -23,6 +23,13 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
             }), function success(result) {
                 $scope.line = result;
             });
+        };
+
+        $scope.inputFocus = function () {
+            console.log("Focused");
+            $scope.stationsTo = stationService.findArrivingStations({
+                id: $scope.startStation.id
+            })
         }
 
     }]);
