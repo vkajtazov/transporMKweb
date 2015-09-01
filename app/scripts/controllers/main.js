@@ -15,6 +15,8 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
 
         $scope.stationsFrom = stationService.query();
         $scope.stationsTo = [];
+		$scope.busShow = true;
+		$scope.trainShow = false;
 
         $scope.find = function () {
             lineService.find($.param({
@@ -31,5 +33,13 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
                 id: $scope.startStation.id
             })
         }
+		
+		$scope.changeBusStatus = function (){
+			$scope.busShow = true;
+		}
+		
+		$scope.changeTrainStatus = function (){
+			$scope.trainShow = true;
+		}
 
     }]);
