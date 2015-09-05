@@ -17,7 +17,7 @@
                     <input type="text" g-places-autocomplete options="autocompleteOptions" force-selection="true" ng-model="toCity" class="input-medium search-query form-control" placeholder="До">
 -->                </div>
                 <div class="form-actions">
-                    <button ng-disabled="searchForm.$invalid" type="submit" class="btn btn-primary" ng-click="find()">Search</button>
+                    <button ng-disabled="searchForm.$invalid" type="submit" class="btn btn-primary" ng-click="search()">Пребарај</button>
                 </div>
             </div>
 
@@ -26,11 +26,11 @@
                     <label for="info" class="control-label col-xs-12">Изберете превоз</label>
 
                     <div class="btn-group" data-toggle="buttons" >
-                        <label class="btn btn-primary" ng-click="changeBusStatus()">
+                        <label class="btn {{busShow?'btn-success':'btn-primary'}}" ng-click="changeBusStatus()">
                             <input type="radio" id="bus" name="sample"/>
                             <i class="fa fa-bus fa-2x"></i>
                         </label>
-                        <label class="btn btn-primary" ng-click="changeTrainStatus()">
+                        <label class="btn btn-primary btn {{trainShow?'btn-success':'btn-primary'}}" ng-click="changeTrainStatus()">
                             <input type="radio" id="train" name="sample" />
                             <i class="fa fa-train fa-2x"></i>
                         </label>
@@ -53,11 +53,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="schedule in line.scheduleList | orderBy : 'departureTime'">
+                <tr ng-repeat="schedule in line.scheduleList | orderBy : 'departureTime'" class="{{getTime(schedule.departureTime)?'success':'warning'}}">
                     <td>{{ schedule.departureTime }}</td>
                     <td>{{ schedule.arrivalTime }}</td>
                     <td>
-					      <label ng-if="schedule.vehicleType==='BUS'" class="btn btn-info">
+					      <label ng-if="schedule.vehicleType==='BUS'" class="btn btn-primary">
                             <i class="fa fa-bus fa-2x"></i>
                         </label>
 						 <label ng-if="schedule.vehicleType==='TRAIN'" class="btn btn-warning">

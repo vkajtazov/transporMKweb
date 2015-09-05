@@ -16,9 +16,24 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
         $scope.stationsFrom = stationService.query();
         $scope.stationsTo = [];
 		$scope.busShow = true;
-		$scope.trainShow = false;
+		$scope.trainShow = true;
+		
+		$scope.search = function(){
+			if($scope.busShow && $scope.trainShow){
+				find();
+			}
+			else if($scope.busShow && !$scope.trainShow){
+				findBusSchedules();
+			}
+			else if(!$scope.busShow && $scope.trainShow){
+				findTrainSchedules();
+			}
+			else {
+				$scope.line = {};
+			}
+		}
 
-        $scope.find = function () {
+        var find = function () {
             lineService.find($.param({
                 startStationId: $scope.startStation.id,
                 endStationId: $scope.endStation.id
@@ -26,6 +41,24 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
                 $scope.line = result;
             });
         };
+		
+		var findBusSchedules = function () {
+			 lineService.findBusSchedules($.param({
+                startStationId: $scope.startStation.id,
+                endStationId: $scope.endStation.id
+            }), function success(result) {
+                $scope.line = result;
+            });
+		}
+		
+		var findTrainSchedules = function () {
+			 lineService.findTrainSchedules($.param({
+                startStationId: $scope.startStation.id,
+                endStationId: $scope.endStation.id
+            }), function success(result) {
+                $scope.line = result;
+            });
+		}
 
         $scope.inputFocus = function () {
             console.log("Focused");
@@ -35,11 +68,19 @@ FirstApp.controller('MainCtrl', ['$scope', 'stationService', 'lineService',
         }
 		
 		$scope.changeBusStatus = function (){
-			$scope.busShow = true;
+			$scope.busShow = !$scope.busShow;
+			$scope.search ();
 		}
 		
 		$scope.changeTrainStatus = function (){
-			$scope.trainShow = true;
+			$scope.trainShow = !$scope.trainShow;
+			$scope.search ();
+		}
+		
+		$scope.getTime = function (vreme) {
+			        var currTime = new Date();
+                    var lineTime = new Date(new Date().setHours(vreme[0] + vreme[1], vreme[3] + vreme[4]));
+                    return (currTime <= lineTime);
 		}
 
     }]);
